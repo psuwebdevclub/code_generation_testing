@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Esports Info Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    .team-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    
+    .team-info div {
+      width: 30%;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    .team-info h2 {
+      color: #333;
+    }
+    
+    .team-info p {
+      color: #666;
+    }
+    
+    .stat {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 200px;
+      width: 200px;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+    
+    .stat-value {
+      font-size: 48px;
+      color: #333;
+      font-weight: bold;
+      animation: increase 2s ease-in-out;
+    }
+    
+    .stat-description {
+      font-size: 14px;
+      color: #666;
+      margin-top: 10px;
+    }
+    
+    @keyframes increase {
+      0% {
+        transform: scale(0);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    
+    .animation-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    
+    .animation-container div {
+      width: 30%;
+      margin-bottom: 20px;
+    }
+    
+    .animation-container img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Esports Info Page</h1>
+    
+    <div class="team-info">
+      <div>
+        <h2>Team Name</h2>
+        <p>Team statement goes here...</p>
+      </div>
+      <div>
+        <h2>Wins</h2>
+        <p>Number of wins</p>
+        <div class="stat">
+          <div class="stat-value" id="wins">0</div>
+          <div class="stat-description">Wins</div>
+        </div>
+      </div>
+      <div>
+        <h2>K/D</h2>
+        <p>Kills/Deaths ratio</p>
+        <div class="stat">
+          <div class="stat-value" id="kd">0.0</div>
+          <div class="stat-description">Kills/Deaths ratio</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="animation-container">
+      <div>
+        <h2>Animation 1</h2>
+        <img src="animation1.gif" alt="Animation 1">
+      </div>
+      <div>
+        <h2>Animation 2</h2>
+        <img src="animation2.gif"
+             alt="Animation 2">
+      </div>
+    </div>
+
+  <script>
+    const winsElement = document.getElementById('wins');
+    const kdElement = document.getElementById('kd');
+
+    setInterval(() => {
+      fetch('https://api.example.com/data')
+        .then(response => response.json())
+        .then(data => {
+          winsElement.textContent = data.wins;
+          kdElement.textContent = data.kd;
+        })
+        .catch(error => console.error(error));
+    }, 1000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esports Team</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #141e30, #243b55);
+        color: white;
+        overflow-x: hidden;
+      }
+      header {
+        text-align: center;
+        padding: 50px;
+        animation: fadeIn 2s;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      section {
+        padding: 20px;
+        margin: 20px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s;
+      }
+      section:hover {
+        transform: scale(1.05);
+      }
+      footer {
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to the Esports Arena</h1>
+      <p>Join us in celebrating the best teams and players!</p>
+    </header>
+
+    <section id="teams">
+      <h2>Our Teams</h2>
+      <p>Team A, Team B, Team C...</p>
+    </section>
+
+    <section id="history">
+      <h2>Past History</h2>
+      <p>Highlights of past tournaments and achievements.</p>
+    </section>
+
+    <section id="statistics">
+      <h2>Statistics</h2>
+      <p>Latest stats and player performances.</p>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Us</h2>
+      <form id="contactForm">
+        <input type="text" placeholder="Your Name" required />
+        <input type="email" placeholder="Your Email" required />
+        <textarea placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>&copy; 2023 Esports Team. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          alert("Thank you for your message!");
+          this.reset();
+        });
+    </script>
+  </body>
+</html>

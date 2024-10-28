@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Esports Info Page</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background-color: #1a1a1a;
+        color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .container {
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        margin-bottom: 20px;
+        font-size: 2.5em;
+      }
+      .stats {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px 0;
+      }
+      .stat {
+        font-size: 1.5em;
+        margin: 0 10px;
+      }
+      .team-statement {
+        font-size: 1.2em;
+        margin-top: 20px;
+      }
+      @keyframes countUp {
+        from {
+          content: "0";
+        }
+        to {
+          content: attr(data-value);
+        }
+      }
+      .animated-number {
+        display: inline-block;
+        animation: countUp 2s forwards;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Team XYZ Esports</h1>
+      <div class="stats">
+        <div class="stat">
+          Wins: <span class="animated-number" data-value="0">0</span>
+        </div>
+        <div class="stat">
+          K/D: <span class="animated-number" data-value="0">0</span>
+        </div>
+        <div class="stat">
+          Matches: <span class="animated-number" data-value="0">0</span>
+        </div>
+      </div>
+      <div class="team-statement">
+        Our team is dedicated to excellence and pushing the boundaries of
+        competitive gaming.
+      </div>
+    </div>
+    <script>
+      async function fetchStats() {
+        const response = await fetch("/api/stats");
+        const data = await response.json();
+        document.querySelectorAll(".animated-number").forEach((el, index) => {
+          const value = parseFloat(data[index]);
+          el.setAttribute("data-value", value);
+          let start = 0;
+          const duration = 2000;
+          const stepTime = Math.abs(Math.floor(duration / value));
+          const timer = setInterval(() => {
+            start += 0.1;
+            if (start >= value) {
+              el.textContent = value.toFixed(1);
+              clearInterval(timer);
+            } else {
+              el.textContent = start.toFixed(1);
+            }
+          }, stepTime);
+        });
+      }
+
+      window.onload = fetchStats;
+    </script>
+  </body>
+</html>
